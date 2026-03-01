@@ -12,11 +12,11 @@ app.use(express.json());
 
 //create a todo
 
-app.post("/todos", async(req, res) => {
+app.post("/todo", async(req, res) => {
     try{
         const { description } = req.body;
         const newTodo = await pool.query(
-            "INSERT INTO todo (description) VALUES($1) *", [description]
+            "INSERT INTO todo (description) VALUES($1)", [description]
         );
 
         res.json(newTodo);
@@ -70,7 +70,7 @@ app.put("/todos/:id", async(req, res) => {
 app.delete("/todos/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id])
+        const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
     }catch(err) {
         console.log(err.message);
         

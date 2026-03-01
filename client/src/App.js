@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // components
 import InputTodo from "./components/InputTodo";

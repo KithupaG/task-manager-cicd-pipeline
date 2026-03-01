@@ -1,11 +1,17 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-import EditTodo  from "./EditTodo";
+import EditTodo from "./EditTodo";
 
-const ListTodos = () => {
+const ListTodos = ({ todo }) => {
 
     const [todos, setTodos] = useState([]);
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     // delete function
 
@@ -15,20 +21,20 @@ const ListTodos = () => {
                 method: "DELETE"
             });
 
-            window.location.reload();
-        }catch (err) {
+            setTodos(todos.filter((todo) => todo.todo_id !== id));
+        } catch (err) {
             console.error(err.message)
         }
     }
 
-    const getTodos = async() => {
+    const getTodos = async () => {
         try {
             const response = await fetch("http://localhost:5000/todos")
             const jsonData = await response.json();
 
             setTodos(jsonData);
-            
-        }catch(err) {
+
+        } catch (err) {
             console.error(err);
         }
     }
@@ -49,17 +55,17 @@ const ListTodos = () => {
                 </thead>
                 <tbody>
                     {todos.map(todo => (
-                        <tr  key={todo.todo_id}>
+                        <tr key={todo.todo_id}>
                             <td>{todo.description}</td>
                             <td>
-                                <EditTodo />
+                               <EditTodo todo={todo}/> 
                             </td>
                             <td><button className="btn btn-danger" onClick={() => deleteTodo(todo.todo_id)}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-    </Fragment>
+        </Fragment>
     )
 }
 

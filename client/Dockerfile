@@ -8,6 +8,8 @@ COPY package*.json ./
 
 RUN npm install
 
+COPY . .
+
 # Serve stage
 RUN npm run build
 

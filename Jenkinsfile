@@ -34,9 +34,11 @@ pipeline {
         stage('Push Images') {
             steps {
                 script {
-                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                    sh 'docker push kithupag/client:latest'
-                    sh 'docker push kithupag/server:latest'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKER_PWD', usernameVariable: 'DOCKER_USER')]) {
+                        sh "echo ${DOCKER_PWD} | docker login -u ${DOCKER_USER} --password-stdin"
+                        sh 'docker push kithupag/client:latest'
+                        sh 'docker push kithupag/server:latest'
+                    }
                 }
             }
         }

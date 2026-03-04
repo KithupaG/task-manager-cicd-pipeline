@@ -14,7 +14,7 @@ const EditTodo = ({ todo }) => {
         e.preventDefault();
         try {
             const body = { description };
-            await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+            await fetch(`/api/todos/${todo.todo_id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body),
@@ -30,7 +30,7 @@ const EditTodo = ({ todo }) => {
         <Fragment>
             <button
                 type="button"
-                className="btn btn-warning"
+                className="btn btn-danger"
                 onClick={() => setShow(true)}
             >
                 Edit
@@ -66,7 +66,7 @@ const EditTodo = ({ todo }) => {
                         <div className="modal-footer">
                             <button
                                 type="button"
-                                className="btn btn-danger"
+                                className="btn btn-warning"
                                 onClick={handleClose}
                             >
                                 Close

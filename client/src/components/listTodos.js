@@ -1,6 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 import EditTodo from "./EditTodo";
 
@@ -8,16 +6,12 @@ const ListTodos = ({ todo }) => {
 
     const [todos, setTodos] = useState([]);
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     // delete function
 
     const deleteTodo = async (id) => {
         try {
-            const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
+            
+            await fetch(`http://localhost:5000/todos/${id}`, {
                 method: "DELETE"
             });
 

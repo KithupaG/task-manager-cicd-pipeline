@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: BuduAmmo123!
+      POSTGRES_PASSWORD: EAMPLE_PASSWORD
       POSTGRES_DB: todo_db
     volumes:
       - db-data:/var/lib/postgresql/data

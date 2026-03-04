@@ -15,13 +15,7 @@ A full-stack PERN (PostgreSQL, Express, React, Node.js) task manager app deploye
 
 ## Architecture
 
-```
-Developer → GitLab Push → Jenkins (DigitalOcean) → Docker Hub → AWS EC2
-                                ↓
-                    Build & push Docker images
-                    SCP docker-compose.yaml to EC2
-                    SSH into EC2 → docker compose up
-```
+<img width="1280" height="720" alt="Developer" src="https://github.com/user-attachments/assets/44b118ba-a6a3-4677-b096-dceefe4491e1" />
 
 ### Infrastructure
 
@@ -192,3 +186,4 @@ Key takeaways:
 - [ ] Add Prometheus + Grafana for monitoring
 
 Pretty overkill for a task manager, but its worth it.
+

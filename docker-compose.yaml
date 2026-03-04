@@ -1,43 +1,39 @@
-version: '3.8'
-
 services:
   db:
-    image: postgres:15
-    container_name: postgres_db
+    image: postgres:16-alpine
+    container_name: todo-db
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: perntodo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: BuduAmmo123!
+      POSTGRES_DB: todo_db
     volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./server/database.sql:/docker-entrypoint-database.d/database.sql
+      - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  server:
-    build: ./server
-    container_name: backend
+
+  backend:
+    image: kithupag/server:latest
+    container_name: todo-backend
     restart: always
+    depends_on:
+      - db
     environment:
       DB_HOST: db
-      DB_USER: ${POSTGRES_USER}
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_NAME: perntodo
+      DB_USER: postgres
+      DB_PASSWORD: BuduAmmo123!
+      DB_NAME: todo_db
     ports:
       - "5000:5000"
-    depends_on:
-      db:
-        conditions: service_healthy
 
-
-  client:
-    build: ./client
-    container_name: frontend
+  frontend:
+    image: kithupag/client:latest
+    container_name: todo-frontend
     restart: always
-    ports:
-      - "3000:80"
     depends_on:
-      - server
+      - backend
+    ports:
+      - "80:80"
 
 volumes:
-  pgdata:
+  db-data:

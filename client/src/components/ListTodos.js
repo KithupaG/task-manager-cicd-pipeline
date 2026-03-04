@@ -11,7 +11,7 @@ const ListTodos = ({ todo }) => {
     const deleteTodo = async (id) => {
         try {
             
-            await fetch(`http://localhost:5000/todos/${id}`, {
+            await fetch(`/api/todos/${id}`, {
                 method: "DELETE"
             });
 
@@ -23,7 +23,7 @@ const ListTodos = ({ todo }) => {
 
     const getTodos = async () => {
         try {
-            const response = await fetch("http://localhost:5000/todos")
+            const response = await fetch("/api/todos")
             const jsonData = await response.json();
 
             setTodos(jsonData);
@@ -54,7 +54,7 @@ const ListTodos = ({ todo }) => {
                             <td>
                                <EditTodo todo={todo}/> 
                             </td>
-                            <td><button className="btn btn-danger" onClick={() => deleteTodo(todo.todo_id)}>Delete</button></td>
+                            <td><button className="btn btn-warning" onClick={() => deleteTodo(todo.todo_id)}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>

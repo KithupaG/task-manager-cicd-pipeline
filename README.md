@@ -119,7 +119,7 @@ App will be available at `http://localhost`.
 
 ### Environment Variables
 
-Create a `.env` file in the root:
+Create a `.env` file in the ./server directory:
 
 ```env
 DB_HOST=db
@@ -186,6 +186,7 @@ Key takeaways:
 - [ ] Add Prometheus + Grafana for monitoring
 
 Pretty overkill for a task manager, but its worth it.
+
 
 
 

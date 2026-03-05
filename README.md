@@ -179,11 +179,12 @@ Key takeaways:
 ## What I'd Improve Next
 
 - [ ] Automate database table creation via `docker-entrypoint-initdb.d/`
-- [ ] Add Docker health checks to all services
+- [x] Add Docker health checks to all services
 - [ ] Pin image tags in production compose instead of using `:latest`
 - [ ] Add a test stage to Jenkins before building images
 - [ ] Set up HTTPS with Let's Encrypt + certbot
 - [ ] Add Prometheus + Grafana for monitoring
 
 Pretty overkill for a task manager, but its worth it.
+
 

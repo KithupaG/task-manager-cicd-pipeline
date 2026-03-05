@@ -20,7 +20,7 @@ services:
       start_period: 10s
 
   backend:
-    image: kithupag/server:latest
+    image: kithupag/server:${SERVER_IMAGE_TAG:-latest}
     container_name: todo-backend
     restart: always
     depends_on:
@@ -41,7 +41,7 @@ services:
       start_period: 30s
 
   frontend:
-    image: kithupag/client:latest
+    image: kithupag/client:${CLIENT_IMAGE_TAG:-latest}
     container_name: todo-frontend
     restart: always
     depends_on:

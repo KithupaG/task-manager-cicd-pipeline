@@ -78,8 +78,23 @@ task-manager-cicd-pipeline/
 
 ## Key Technical Decisions
 
-**Nginx as reverse proxy in the frontend container**
-Rather than hardcoding an API URL into the React build, the frontend nginx proxies all `/api/*` requests to the backend container. This means the same Docker image works in any environment with zero config changes.
+Nginx as reverse proxy in the frontend container
+Rather than hardcoding an API URL into the React build, the frontend nginx proxies all /api/* requests to the backend container. This means the same Docker image works in any environment with zero config changes.
+nginxlocation /api {
+    proxy_pass http://todo-backend:5000;
+}
+Jenkins SCPs docker-compose.yaml on every deploy
+The compose file lives in the repo and gets pushed to EC2 as part of the pipeline. The server never drifts out of sync with the codebase.
+Build number tagging with pinned production tags
+Every image is tagged with both the Jenkins build number and :latest during the build. The production docker-compose.yaml is updated by the pipeline to reference the exact build number tag — never :latest — so deployments are deterministic and rollback is as simple as reverting the tag to a previous build number.
+Automatic database initialisation
+The postgres container mounts server/database.sql into /docker-entrypoint-initdb.d/ so the todo table is created automatically on first run. No manual steps required on a fresh deployment.
+yamldb:
+  volumes:
+    - db-data:/var/lib/postgresql/data
+    - ./server/database.sql:/docker-entrypoint-initdb.d/init.sql
+Health checks on all services
+All three containers report their real status rather than just Up. The backend and frontend are checked via HTTP, the database via pg_isready. Dependent services wait for healthy status before starting.
 
 ```nginx
 location /api {
@@ -178,13 +193,18 @@ Key takeaways:
 
 ## What I'd Improve Next
 
-- [x] Automate database table creation via `docker-entrypoint-initdb.d/`
+ Completed
+
+- [x] Automate database table creation via docker-entrypoint-initdb.d/
 - [x] Add Docker health checks to all services
-- [x] Pin image tags in production compose instead of using `:latest`
+- [x] Pin image tags in production compose instead of using :latest
+
+## Up Next
+
+- [ ] Migrate pipeline from Jenkins to GitHub Actions
 - [ ] Set up HTTPS with Let's Encrypt + certbot
 - [ ] Add Prometheus + Grafana for monitoring
-
-Pretty overkill for a task manager, but its worth it.
+- [ ] Provision infrastructure with Terraform instead of manually
 
 
 

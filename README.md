@@ -206,6 +206,13 @@ Key takeaways:
 - [ ] Add Prometheus + Grafana for monitoring
 - [ ] Provision infrastructure with Terraform instead of manually
 
+---
+
+## 📄 License
+
+MIT
+
+
 
 
 

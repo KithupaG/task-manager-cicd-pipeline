@@ -198,13 +198,8 @@ Key takeaways:
 - [x] Automate database table creation via docker-entrypoint-initdb.d/
 - [x] Add Docker health checks to all services
 - [x] Pin image tags in production compose instead of using :latest
+- [x] Migrate pipeline from Jenkins to GitHub Actions
 
-## Up Next
-
-- [ ] Migrate pipeline from Jenkins to GitHub Actions
-- [ ] Set up HTTPS with Let's Encrypt + certbot
-- [ ] Add Prometheus + Grafana for monitoring
-- [ ] Provision infrastructure with Terraform instead of manually
 
 ---
 

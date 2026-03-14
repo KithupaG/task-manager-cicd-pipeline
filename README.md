@@ -145,7 +145,7 @@ DB_NAME=todo_db
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -157,7 +157,7 @@ DB_NAME=todo_db
 
 ---
 
-## ⚙️ Jenkins Setup Requirements
+## Jenkins Setup Requirements
 
 To replicate this pipeline you will need:
 
@@ -177,7 +177,7 @@ To replicate this pipeline you will need:
 
 ---
 
-## 💡 Lessons Learned
+## Lessons Learned
 
 This was my first end-to-end CI/CD deployment. A full breakdown of every bug encountered and how it was fixed is documented in [`LEARNING_JOURNAL.md`](./LEARNING_JOURNAL.md).
 
@@ -203,7 +203,7 @@ Key takeaways:
 
 ---
 
-## 📄 License
+## License
 
 MIT
 
